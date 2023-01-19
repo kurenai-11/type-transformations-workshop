@@ -1,3 +1,4 @@
+import { Key } from "ts-toolbelt/out/Any/Key";
 import { Equal, Expect } from "../helpers/type-utils";
 
 export const fakeDataDefaults = {
@@ -8,16 +9,18 @@ export const fakeDataDefaults = {
   ID: "id",
 };
 
-export type StringType = unknown;
-export type IntType = unknown;
-export type FloatType = unknown;
-export type BooleanType = unknown;
-export type IDType = unknown;
+type FakeDataDefaults = typeof fakeDataDefaults;
+
+export type StringType = FakeDataDefaults["String"];
+export type IntType = FakeDataDefaults["Int"];
+export type FloatType = FakeDataDefaults["Float"];
+export type BooleanType = FakeDataDefaults["Boolean"];
+export type IDType = FakeDataDefaults["ID"];
 
 type tests = [
   Expect<Equal<StringType, string>>,
   Expect<Equal<IntType, number>>,
   Expect<Equal<FloatType, number>>,
   Expect<Equal<BooleanType, boolean>>,
-  Expect<Equal<IDType, string>>,
+  Expect<Equal<IDType, string>>
 ];

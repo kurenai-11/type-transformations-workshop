@@ -1,3 +1,4 @@
+import { Keys } from "ts-toolbelt/out/Any/Keys";
 import { Equal, Expect } from "../helpers/type-utils";
 
 export const programModeEnumMap = {
@@ -9,7 +10,13 @@ export const programModeEnumMap = {
   PLANNED_SELF_DIRECTED: "plannedSelfDirected",
 } as const;
 
-export type IndividualProgram = unknown;
+type ProgramModeEnumMap = typeof programModeEnumMap;
+
+export type IndividualProgram =
+  | ProgramModeEnumMap["ONE_ON_ONE"]
+  | ProgramModeEnumMap["SELF_DIRECTED"]
+  | ProgramModeEnumMap["PLANNED_ONE_ON_ONE"]
+  | ProgramModeEnumMap["PLANNED_SELF_DIRECTED"];
 
 type tests = [
   Expect<
@@ -17,5 +24,5 @@ type tests = [
       IndividualProgram,
       "1on1" | "selfDirected" | "planned1on1" | "plannedSelfDirected"
     >
-  >,
+  >
 ];
